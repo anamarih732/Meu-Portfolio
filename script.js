@@ -6,6 +6,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
 
   // Gerenciamento do modo escuro / claro
+  const updateSocialIcons = (isDark) => {
+    const socialImgs = document.querySelectorAll('img[src*="github"], img[src*="linkedin"]');
+    socialImgs.forEach((img) => {
+      const src = img.getAttribute('src');
+      if (isDark) {
+        if (src.includes('github.png')) img.setAttribute('src', 'img/github-roxo.png');
+        if (src.includes('linkedin.png')) img.setAttribute('src', 'img/linkedin-roxo.png');
+      } else {
+        if (src.includes('github-roxo.png')) img.setAttribute('src', 'img/github.png');
+        if (src.includes('linkedin-roxo.png')) img.setAttribute('src', 'img/linkedin.png');
+      }
+    });
+  };
+
   const applyTheme = (isDark) => {
     if (isDark) {
       document.body.classList.add('dark-mode');
@@ -20,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.setAttribute('title', 'Ativar modo escuro');
       }
     }
+    updateSocialIcons(isDark);
   };
 
   const savedTheme = localStorage.getItem('theme');

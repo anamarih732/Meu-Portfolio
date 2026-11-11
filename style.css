@@ -369,9 +369,17 @@ body.dark-mode .theme-toggle:hover {
         filter 0.3s ease;
 }
 
+body.dark-mode .coluna2 a img {
+    filter: none;
+}
+
 .coluna2 a img:hover {
     transform: translateY(-3px) scale(1.1);
     filter: brightness(0) invert(1) drop-shadow(0 8px 12px rgba(255, 255, 255, 0.25));
+}
+
+body.dark-mode .coluna2 a img:hover {
+    filter: drop-shadow(0 6px 14px rgba(129, 45, 203, 0.45));
 }
 
 /*Sobre Mim*/
@@ -581,7 +589,7 @@ body.dark-mode .theme-toggle:hover {
 }
 
 body.dark-mode .links-projeto a img {
-    filter: brightness(0) invert(1);
+    filter: none;
 }
 
 .links-projeto a svg {
@@ -762,9 +770,17 @@ footer .contatos a img {
     transition: transform 0.28s ease, filter 0.28s ease;
 }
 
+body.dark-mode footer .contatos a img {
+    filter: none;
+}
+
 footer .contatos a:hover img {
     transform: translateY(-3px) scale(1.1);
     filter: brightness(0) invert(1) drop-shadow(0 6px 12px rgba(255, 255, 255, 0.3));
+}
+
+body.dark-mode footer .contatos a:hover img {
+    filter: drop-shadow(0 6px 12px rgba(129, 45, 203, 0.45));
 }
 
 .toast {
