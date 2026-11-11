@@ -1,5 +1,7 @@
 # Meu Portfólio
 
+![meu-portfolio](img/portfolio.png)
+
 ## Descrição
 
 Site desenvolvido com o objetivo de apresentar meu perfil profissional, minhas habilidades, conhecimentos e projetos na área de tecnologia.
@@ -17,6 +19,7 @@ Site desenvolvido com o objetivo de apresentar meu perfil profissional, minhas h
 - HTML
 - CSS
 - JavaScript
+- Ícones do site Lucide ( https://lucide.dev/icons/ )
 
 ## Atualizações
 
@@ -26,4 +29,4 @@ A versão inicial do projeto está concluída, mas o portfólio continuará rece
 
 O site está publicado no GitHub Pages. Para acessá-lo, clique no link abaixo:
 
-(link)
+https://anamarih732.github.io/Meu-Portfolio/
