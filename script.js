@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const projectLinks = document.querySelectorAll('.links-projeto a');
   const toast = document.getElementById('toast');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
 
   const isValidProjectLink = (href) => {
     if (!href) return false;
@@ -36,6 +38,53 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 2200);
   };
+
+  if (menuToggle && navLinks) {
+    const toggleMenu = () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    };
+
+    const closeMenu = () => {
+      if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menu');
+      }
+    };
+
+    menuToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      toggleMenu();
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 880) {
+        closeMenu();
+      }
+    });
+  }
 
   projectLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
