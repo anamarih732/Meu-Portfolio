@@ -15,11 +15,44 @@
     --rosa: #ff31e0;
     --rosa-hover: #fc16d4;
 
+    /* Variáveis temáticas */
+    --bg-body: #ffffff;
+    --bg-card: #f4f6f9;
+    --bg-card-projeto: #f3f5f7;
+    --bg-tech-tag: #e8ebf0;
+    --texto-principal: #1f2937;
+    --texto-secundario: #475569;
+    --texto-mutado: #5f6c7a;
+    --texto-tag: #394454;
+    --borda-card: rgba(148, 163, 184, 0.2);
+    --sombra-card: rgba(15, 23, 42, 0.06);
+    --navbar-bg: #9746e9;
+    --hero-bg: #812dcb;
+    --footer-bg: #812dcb;
+    --img-placeholder-bg: #dfe7f1;
+
     --titulo: clamp(26px, 4vw, 36px);
     --subtitulo: clamp(20px, 3vw, 28px);
     --texto: clamp(16px, 1.8vw, 19px);
     --fonte-titulo: "Edu NSW ACT Cursive", cursive;
     --font-texto: "Google Sans", sans-serif;
+}
+
+body.dark-mode {
+    --bg-body: #0f1117;
+    --bg-card: #181c27;
+    --bg-card-projeto: #181c27;
+    --bg-tech-tag: #23293a;
+    --texto-principal: #f3f4f6;
+    --texto-secundario: #cbd5e1;
+    --texto-mutado: #94a3b8;
+    --texto-tag: #e2e8f0;
+    --borda-card: rgba(255, 255, 255, 0.08);
+    --sombra-card: rgba(0, 0, 0, 0.45);
+    --navbar-bg: #141722;
+    --hero-bg: #10131d;
+    --footer-bg: #141722;
+    --img-placeholder-bg: #1f2533;
 }
 
 html {
@@ -33,10 +66,11 @@ html {
 
 body {
     font-family: var(--font-texto);
-    color: #1f2937;
-    background-color: var(--branco);
+    color: var(--texto-principal);
+    background-color: var(--bg-body);
     overflow-x: hidden;
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img,
@@ -82,11 +116,12 @@ h2 {
     z-index: 1000;
     width: 100%;
     min-height: 75px;
-    background: var(--lilas);
+    background: var(--navbar-bg);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
+    transition: background-color 0.3s ease;
 }
 
 .navbar-brand {
@@ -94,6 +129,74 @@ h2 {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Botão de alternância do tema escuro/claro */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    color: var(--branco);
+    padding: 0;
+    transition: background-color 0.25s ease, transform 0.2s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--branco);
+    outline-offset: 2px;
+}
+
+.theme-toggle svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(15deg);
+}
+
+/* Controle dos ícones sol/lua */
+.theme-toggle .icon-sun {
+    display: none;
+}
+
+.theme-toggle .icon-moon {
+    display: block;
+}
+
+body.dark-mode .theme-toggle .icon-sun {
+    display: block;
+    color: #fbbf24;
+}
+
+body.dark-mode .theme-toggle .icon-moon {
+    display: none;
+}
+
+body.dark-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.16);
 }
 
 .navbar h2 {
@@ -192,9 +295,10 @@ h2 {
     min-height: calc(100vh - 75px);
     justify-content: center;
     align-items: center;
-    background: var(--roxo);
+    background: var(--hero-bg);
     padding: 60px 40px;
     gap: 50px;
+    transition: background-color 0.3s ease;
 }
 
 .coluna1 {
@@ -290,7 +394,7 @@ h2 {
 .div1 p {
     margin: 14px 0;
     line-height: 1.65;
-    color: #374151;
+    color: var(--texto-secundario);
 }
 
 .div2 {
@@ -307,14 +411,15 @@ h2 {
     max-width: 440px;
     min-height: 420px;
     border-radius: 16px;
-    background: var(--cinza);
+    background: var(--bg-card);
     padding: 36px 32px;
     justify-content: center;
     align-items: flex-start;
     text-align: left;
     gap: 32px;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 4px 12px var(--sombra-card);
+    border: 1px solid var(--borda-card);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-item {
@@ -327,18 +432,19 @@ h2 {
     flex-shrink: 0;
     width: 32px;
     height: 32px;
-    color: #0f172a;
+    color: var(--texto-principal);
+    stroke: var(--texto-principal);
 }
 
 .card-item p {
     margin: 0;
     font-size: 17px;
     line-height: 1.5;
-    color: #475569;
+    color: var(--texto-secundario);
 }
 
 .card-item p b {
-    color: #0f172a;
+    color: var(--texto-principal);
     font-size: 19px;
 }
 
@@ -364,20 +470,21 @@ h2 {
     width: 100%;
     min-height: 470px;
     border-radius: 14px;
-    background: #f3f5f7;
-    border: 1px solid rgba(148, 163, 184, 0.25);
-    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+    background: var(--bg-card-projeto);
+    border: 1px solid var(--borda-card);
+    box-shadow: 0 3px 10px var(--sombra-card);
     overflow: hidden;
     position: relative;
     transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.32s ease;
+        border-color 0.32s ease,
+        background-color 0.3s ease;
 }
 
 .card-projeto:hover {
     transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
-    border-color: rgba(151, 70, 233, 0.35);
+    box-shadow: 0 16px 32px var(--sombra-card);
+    border-color: rgba(151, 70, 233, 0.45);
 }
 
 .imagem-projeto {
@@ -385,7 +492,7 @@ h2 {
     height: 190px;
     position: relative;
     overflow: hidden;
-    background: #dfe7f1;
+    background: var(--img-placeholder-bg);
 }
 
 .imagem-projeto img {
@@ -406,7 +513,7 @@ h2 {
     margin: 18px 20px 8px;
     font-size: 20px;
     line-height: 1.35;
-    color: #1f2937;
+    color: var(--texto-principal);
     font-weight: 700;
 }
 
@@ -414,7 +521,7 @@ h2 {
     margin: 0 20px 16px;
     font-size: 16px;
     line-height: 1.5;
-    color: #5f6c7a;
+    color: var(--texto-mutado);
     flex-grow: 1;
 }
 
@@ -429,11 +536,12 @@ h2 {
     margin: 0;
     border-radius: 8px;
     padding: 6px 12px;
-    background: #e8ebf0;
-    color: #394454;
+    background: var(--bg-tech-tag);
+    color: var(--texto-tag);
     font-size: 14px;
     font-weight: 500;
     white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .links-projeto {
@@ -442,7 +550,7 @@ h2 {
     justify-content: space-between;
     gap: 14px;
     padding: 16px 20px;
-    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    border-top: 1px solid var(--borda-card);
     margin-top: auto;
     flex-wrap: wrap;
 }
@@ -452,14 +560,14 @@ h2 {
     align-items: center;
     gap: 8px;
     font-size: 15px;
-    color: #1f2937;
+    color: var(--texto-principal);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .links-projeto a:hover {
-    color: var(--lilas);
+    color: var(--rosa);
     transform: translateY(-1px);
     text-decoration: underline;
 }
@@ -469,6 +577,11 @@ h2 {
     height: 22px;
     object-fit: contain;
     filter: grayscale(1) brightness(0.35);
+    transition: filter 0.3s ease;
+}
+
+body.dark-mode .links-projeto a img {
+    filter: brightness(0) invert(1);
 }
 
 .links-projeto a svg {
@@ -504,17 +617,18 @@ h2 {
     justify-content: flex-start;
     align-items: flex-start;
     border-radius: 14px;
-    background: var(--cinza);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+    background: var(--bg-card);
+    border: 1px solid var(--borda-card);
+    box-shadow: 0 4px 10px var(--sombra-card);
     transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.32s ease;
+        border-color 0.32s ease,
+        background-color 0.3s ease;
 }
 
 .container-linguagens .card:hover {
     transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 14px 28px var(--sombra-card);
     border-color: rgba(151, 70, 233, 0.3);
 }
 
@@ -523,6 +637,11 @@ h2 {
     height: 44px;
     flex-shrink: 0;
     color: var(--roxo);
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .container-linguagens .card svg {
+    color: #c084fc;
 }
 
 .container-linguagens .card h2 {
@@ -531,14 +650,14 @@ h2 {
     width: fit-content;
     padding-bottom: 3px;
     font-size: 22px;
-    color: #1f2937;
+    color: var(--texto-principal);
 }
 
 .container-linguagens .card p {
     margin: 2px 0;
     font-size: 17px;
     line-height: 1.5;
-    color: #475569;
+    color: var(--texto-secundario);
 }
 
 /*Habilidades*/
@@ -565,22 +684,24 @@ h2 {
     margin: 0;
     padding: 16px 20px;
     border-radius: 14px;
-    background: var(--cinza);
+    background: var(--bg-card);
     border: 2px dashed var(--rosa);
     box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.04);
-    color: #111827;
+    color: var(--texto-principal);
     font-family: var(--font-texto);
     font-size: 16px;
     font-weight: 500;
     line-height: 1.4;
     transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.32s ease;
+        border-color 0.32s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .container-habilidades p:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 22px var(--sombra-card);
     border-color: rgba(255, 49, 224, 0.6);
 }
 
@@ -589,7 +710,8 @@ h2 {
     width: 32px;
     height: 32px;
     stroke-width: 2.1;
-    color: #111827;
+    color: var(--texto-principal);
+    transition: color 0.3s ease;
 }
 
 /*Footer & Toast*/
@@ -599,9 +721,10 @@ footer {
     align-items: center;
     padding: 40px 60px;
     margin-top: 80px;
-    background: var(--roxo);
+    background: var(--footer-bg);
     color: var(--branco);
     width: 100%;
+    transition: background-color 0.3s ease;
 }
 
 footer h2 {
@@ -725,9 +848,10 @@ footer .contatos a:hover img {
     .navbar-brand {
         width: 100%;
         padding: 12px 20px;
-        background: var(--lilas);
+        background: var(--navbar-bg);
         position: relative;
         z-index: 1001;
+        transition: background-color 0.3s ease;
     }
 
     .navbar h2 {
@@ -744,7 +868,7 @@ footer .contatos a:hover img {
         left: 0;
         right: 0;
         width: 100%;
-        background: var(--lilas);
+        background: var(--navbar-bg);
         flex-direction: column;
         align-items: stretch;
         padding: 8px 0;
@@ -754,6 +878,7 @@ footer .contatos a:hover img {
         display: none;
         border-top: 1px solid rgba(255, 255, 255, 0.15);
         z-index: 1000;
+        transition: background-color 0.3s ease;
     }
 
     .navbar ul.nav-links.open {

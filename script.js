@@ -3,6 +3,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const toast = document.getElementById('toast');
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const themeToggle = document.getElementById('theme-toggle');
+
+  // Gerenciamento do modo escuro / claro
+  const applyTheme = (isDark) => {
+    if (isDark) {
+      document.body.classList.add('dark-mode');
+      if (themeToggle) {
+        themeToggle.setAttribute('aria-label', 'Ativar modo claro');
+        themeToggle.setAttribute('title', 'Ativar modo claro');
+      }
+    } else {
+      document.body.classList.remove('dark-mode');
+      if (themeToggle) {
+        themeToggle.setAttribute('aria-label', 'Ativar modo escuro');
+        themeToggle.setAttribute('title', 'Ativar modo escuro');
+      }
+    }
+  };
+
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialIsDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+  applyTheme(initialIsDark);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isCurrentlyDark = document.body.classList.contains('dark-mode');
+      const newTheme = !isCurrentlyDark;
+      applyTheme(newTheme);
+      localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    });
+  }
 
   const isValidProjectLink = (href) => {
     if (!href) return false;
